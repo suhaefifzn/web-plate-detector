@@ -1,5 +1,10 @@
+/*
+   ? Google Fonts
+*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+
 /* 
-   HTML RESET
+   ? HTML RESET
    http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -47,4 +52,134 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+a {
+	text-decoration: none;
+}
+/*
+    ? My Main CSS
+	- Try to implement Mobile First Approach
+*/
+* {
+	box-sizing: border-box;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 400;
+}
+html {
+	scroll-behavior: smooth;
+}
+body, header, navbar-element {
+	height: 100%;
+	width: 100%;
+}
+body {
+	position: relative;
+}
+main {
+	min-height: 100vh;
+}
+
+/*
+    ? navbar
+*/
+.navbar, .navbar-menu, .navbar-item-link {
+	display: flex;
+}
+.navbar {
+	top: 0;
+	position: fixed;
+	padding: 8px 16px;
+	background-color: #000;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+	width: 100%;
+	z-index: 99;
+}
+.navbar__title {
+	font-weight: 700;
+	font-size: 24px;
+	padding: 12px;
+}
+.navbar-item-link {
+	color: #fff;
+	font-weight: 600;
+	align-items: center;
+	gap: 8px;
+	padding: 12px;
+	margin: auto 20px;
+}
+.navbar-item-link:hover, .btn-hamburger:hover {
+	background-color: #253760;
+	border-radius: 6px;
+}
+.navbar__icons {
+	width: 1.2em;
+}
+.navbar__title-white {
+	color: #fff;
+}
+.btn-hamburger {
+	border: 0;
+	color: #fff;
+	padding: 12px;
+	background-color: transparent;
+}
+.navbar-menu {
+	gap: 5px;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	background-color: #000;
+	width: 100%;
+	left: -100%;
+	top:65px;
+	padding: 10px;
+	transition: 0.1s;
+	z-index: 98;
+}
+.show-navbar-menu {
+	left: 0%;
+}
+
+/*
+   ? Container
+*/
+#container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: auto;
+	height: 100%;
+	margin: 120px 32px;
+}
+.content {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 12px;
+	width: auto;
+	height: 100%;
+}
+
+/*
+	? Footer
+*/
+#footer {
+	margin-top: 32px;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #000;
+}
+.footer-signature {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	color: #fff;
+	font-size: 16px;
 }
