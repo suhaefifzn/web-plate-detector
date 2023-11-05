@@ -76,7 +76,7 @@ body {
 	position: relative;
 }
 main {
-	min-height: 100vh;
+	min-height: 64vh;
 }
 
 /*
@@ -148,10 +148,11 @@ main {
 #container {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	position: relative;
 	width: auto;
 	height: 100%;
-	margin: 120px 32px;
+	margin: 100px 32px;
 }
 .content {
 	margin-top: 20px;
@@ -175,6 +176,7 @@ main {
 	align-items: center;
 	text-align: center;
 	background-color: #000;
+	position: relative;
 }
 .footer-signature {
 	display: flex;
@@ -237,4 +239,58 @@ main {
 	font-weight: 600;
 	width: 100%;
 	cursor: not-allowed;
+}
+
+/*
+    ? Table
+*/
+.table-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	height: 100%;
+	width: 350px;
+	padding: 20px;
+	box-shadow: -3px -3px 7px rgba(94, 104, 121, 0.377),
+					3px 3px 7px rgba(94, 104, 121, 0.377);
+	display: none;
+}
+thead tr {
+	font-weight: 700;
+	background-color: #acacac;
+}
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+table tbody tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+/*
+    ? TEST - Canvas Output
+*/
+#imageOutput {
+	width: 100%;
 }

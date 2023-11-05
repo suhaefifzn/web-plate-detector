@@ -1,47 +1,36 @@
-import '../../components/image-upload-element';
-import Swal from 'sweetalert2';
+import ImageUploadUtils from '../../utils/image-upload';
+
+const feather = require('feather-icons');
 
 const Home = {
     async render() {
-        return `<image-upload-element></image-upload-element>`;
+        return `
+            <div class="image-upload-wrapper">
+                <div class="image-upload__form">
+                    <div class="image-upload__preview">
+                        <img id="imagePreview"/>
+                    </div>
+                    <input type="file" id="imageFile" accept="image/*"/>
+                    <label for="imageFile">
+                        ${feather.icons.image.toSvg({ class: 'navbar__icons' })}
+                        <span>Pilih Gambar</span>
+                    </label>
+                    <button class="btn-scan" type="button">
+                        ${feather.icons.play.toSvg({ class: 'navbar__icons' })}
+                        <span>Scan</span>
+                    </button>
+                </div>
+            </div>
+            <div class="table-wrapper"></div>
+        `;
     },
 
     async afterRender() {
-        const imageFile = document.querySelector('#imageFile');
-        const buttonScan = document.querySelector('.btn-scan');
-        imageFile.addEventListener('change', (event) => {
-            event.stopPropagation();
-            if (event.target.files.length > 0) {
-                const src = URL.createObjectURL(event.target.files[0]);
-                const preview = document.querySelector('#imagePreview');
-                preview.src = src;
-                preview.style.display = 'block';
-
-                // buttonScan.removeAttribute('disabled');
-                buttonScan.style.cursor = 'pointer';
-                buttonScan.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    console.log('Tombol Scan diklik!');
-                })
-            } 
-        });
-
-        // jika button scan diklik tapi gambar belum ada
-        buttonScan.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const imagePreview = document.querySelector('#imagePreview');
-            
-            if (!imagePreview.attributes.src) {
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Silahkan pilih gambar terlebih dahulu!',
-                    toast: true,
-                    timer: 3000,
-                    position: 'top',
-                    timerProgressBar: true,
-                    showConfirmButton: false,
-                });
-            }
+        ImageUploadUtils.inputElementChanges({
+            inputElement: document.querySelector('#imageFile'),
+            previewElement: document.querySelector('#imagePreview'),
+            scanElement: document.querySelector('.btn-scan'),
+            tableWrapper: document.querySelector('.table-wrapper'),
         });
     }
 };

@@ -46,4 +46,11 @@ module.exports = {
             safe: true,
         }),
     ],
+    resolve: {
+        fallback: {
+            fs: false,
+            path: false,
+            crypto: false,
+        },
+    },
 };
