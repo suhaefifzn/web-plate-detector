@@ -3,7 +3,9 @@ import PlateDetection from './plate-detection';
 const Swal = require('sweetalert2');
 
 const ImageUpload = {
-    inputElementChanges({ inputElement, previewElement, scanElement, tableWrapper }) {
+    inputElementChanges({
+        inputElement, previewElement, scanElement, tableWrapper, cascadeFile,
+    }) {
         inputElement.addEventListener('change', (event) => {
             event.stopPropagation();
             if (event.target.files.length > 0) {
@@ -13,10 +15,12 @@ const ImageUpload = {
                 scanElement.style.cursor = 'pointer';
             }
         });
-        return this._scanButtonClicked({ scanElement, previewElement, tableWrapper });
+        return this._scanButtonClicked({
+            scanElement, previewElement, tableWrapper, cascadeFile,
+        });
     },
 
-    _scanButtonClicked({ scanElement, previewElement, tableWrapper }) {
+    _scanButtonClicked({ scanElement, previewElement, tableWrapper, cascadeFile }) {
         scanElement.addEventListener('click', (event) => {
             event.stopPropagation();
             if (!previewElement.attributes.src) {
@@ -33,6 +37,7 @@ const ImageUpload = {
                 PlateDetection.analysPlateNumber({
                     imagePreview: previewElement,
                     tableWrapper: tableWrapper,
+                    cascadeFile
                 })
             }
         });

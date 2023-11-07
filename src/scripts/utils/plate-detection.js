@@ -1,17 +1,68 @@
+import Helper from './helper';
+
 const cv = require('@techstark/opencv-js');
 
 const PlateDetection = {
-    analysPlateNumber({ imagePreview, tableWrapper }) {
+    analysPlateNumber({ imagePreview, tableWrapper, cascadeFile }) {
         // jika gambar berhasil di analisis, tampilkan hasil pada tabel
         // this._resultTable({ tableWrapper });
 
-        this._detectPlateNumber({ imagePreview, tableWrapper });
+        // this._detectPlateNumber({ imagePreview, tableWrapper });
+        this._detectPlateNumber({ imagePreview, tableWrapper, cascadeFile });
 
         // ? tes dulu
         // this._grayscaleImage({ imagePreview, tableWrapper });
     },
 
-    _detectPlateNumber({ imagePreview, tableWrapper }) {
+    _detectPlateNumber({ imagePreview, tableWrapper, cascadeFile }) {
+        tableWrapper.innerHTML = '';
+
+        // ? untuk melihat progres hasil - sementara
+        const canvas = document.createElement('canvas');
+        const canvasId = 'imageOutput';
+        canvas.getContext('2d');
+        canvas.setAttribute('id', canvasId);
+        tableWrapper.appendChild(canvas);
+
+        // source image
+        const img = cv.imread(imagePreview);
+
+        // grayscale
+        const gray = new cv.Mat();
+        cv.cvtColor(img, gray, cv.COLOR_RGBA2GRAY, 0);
+        
+        const msize = new cv.Size(0, 0);
+        const nsize = new cv.Size(img.cols, img.rows);
+        const plates = new cv.RectVector();
+        const classifier = new cv.CascadeClassifier();
+
+        Helper.loadCascadeFile({
+            path: cascadeFile,
+            url: cascadeFile,
+            callback: () => {
+                classifier.load(cascadeFile);
+            },
+        });
+
+        classifier.detectMultiScale(gray, plates, 1.1, 3, 0, msize, nsize);
+
+        for (let i = 0; i < plates.size(); ++i) {
+            const plateRect = plates.get(i);
+            const point1 = new cv.Point(plateRect.x, plateRect.y);
+            const point2 = new cv.Point(plateRect.x + plateRect.width, plateRect.y + plateRect.height);
+            cv.rectangle(img, point1, point2, [255, 0, 0, 255]);
+          }
+
+        cv.imshow(canvasId, img);
+        
+        img.delete();
+        gray.delete();
+        plates.delete();
+
+        tableWrapper.style.display = 'block';
+    },
+
+    _detectPlateNumber_old({ imagePreview, tableWrapper }) {
         tableWrapper.innerHTML = '';
 
         // ? untuk melihat progres hasil - sementara
@@ -22,7 +73,7 @@ const PlateDetection = {
         tableWrapper.appendChild(canvas);
 
         const img = cv.imread(imagePreview);
-        
+
         // grayscale
         const gray = new cv.Mat();
         cv.cvtColor(img, gray, cv.COLOR_RGBA2GRAY, 0);

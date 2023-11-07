@@ -1,4 +1,5 @@
 import ImageUploadUtils from '../../utils/image-upload';
+import Helper from '../../utils/helper';
 
 const feather = require('feather-icons');
 
@@ -26,11 +27,20 @@ const Home = {
     },
 
     async afterRender() {
+        // load cascade file yang ada difolder public
+        // terjadi ketika telah terbundle.
+        const cascadeFile = 'haarcascade_russian_plate_number.xml';
+        Helper.loadCascadeFile({
+            path: cascadeFile,
+            url: cascadeFile,
+        });
+
         ImageUploadUtils.inputElementChanges({
             inputElement: document.querySelector('#imageFile'),
             previewElement: document.querySelector('#imagePreview'),
             scanElement: document.querySelector('.btn-scan'),
             tableWrapper: document.querySelector('.table-wrapper'),
+            cascadeFile
         });
     }
 };
