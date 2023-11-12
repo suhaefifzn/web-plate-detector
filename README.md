@@ -13,11 +13,23 @@ Library utama yang digunakan:
 - Masih menggunakan haarcascade untuk plat Rusia. Haarcascade didapat dari pencarian di GitHub
 ### Cara Jalankan di Local
 Pastikan perangkat telah terpasang Node.js versi 16.17.1, untuk memastikan Node.js yang telah terpasang bisa cek dengan cara buka cmd dan masukkan perintah:  
-```node --version```  
+
+```
+node --version
+```  
 Jangan lupa untuk unduh atau lakukan clone pada proyek ini ke perangkat milik Anda. Jika hasil unduh berupa file yang diarsipkan maka ekstrak terlebih dahulu. Buka proyek pada code editor yang Anda miliki. Jika menggunakan Visual Studio Code, Anda dapat langsung memasang setiap modul yang terdaftar di package.json dengan perintah di bawah ini melalui terminal code editor:  
-```npm i```  
+
+```
+npm i
+```  
 Apabila modul-modul telah terpasang, proyek bisa dijalankan dengan dua perintah. Perintah pertama untuk menjalankannya tahap pengembangan:  
-```npm run dev```  
+
+```
+npm run dev
+```  
 Perintah kedua untuk menjalankankannya pada tahap akhir. Dengan menggunakan perintah berikut Anda dapat melihat hasilnya pada folder dist yang muncul.  
-```npm run build-serve```  
+
+```
+npm run build-serve
+```  
 Jika proyek ini telah berada di perangkat, Anda bebas untuk melalukan apapun.
