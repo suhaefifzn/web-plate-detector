@@ -32,4 +32,4 @@ Perintah kedua untuk menjalankankannya pada tahap akhir. Dengan menggunakan peri
 ```
 npm run build-serve
 ```  
-Jika proyek ini telah berada di perangkat, Anda bebas untuk melalukan apapun.
+Jika proyek ini telah berada di perangkat Anda, maka bebas untuk melakukan perubahan apapun.

@@ -42,14 +42,6 @@ const PlateDetection = {
       const gray = new cv.Mat();
       cv.cvtColor(img, gray, cv.COLOR_RGBA2GRAY, 0);
 
-      // blur
-      const bilateralFiltered = new cv.Mat();
-      cv.bilateralFilter(gray, bilateralFiltered, 13, 15, 15);
-
-      // edged
-      const edged = new cv.Mat();
-      cv.Canny(bilateralFiltered, edged, 30, 200);
-
       const msize = new cv.Size(0, 0);
       const nsize = new cv.Size(img.cols, img.rows);
       const plates = new cv.RectVector();
@@ -83,9 +75,11 @@ const PlateDetection = {
           plateRect.width - 15,
           plateRect.height - 23
         );
-        dst = img.roi(rect);
-
-        status = true;
+        
+        if (i === 0) {
+          dst = img.roi(rect);
+          status = true;
+        }
       }
 
       // plate tidak terdeteksi
@@ -93,19 +87,16 @@ const PlateDetection = {
         return this._errorCannotReadImage({ tableWrapper });
       }
 
-      // tampilkan ke canvas
+      // simpan ke canvas
       cv.imshow(canvasId, dst);
 
       // hapus dari memori
       img.delete();
       gray.delete();
-      bilateralFiltered.delete();
-      edged.delete();
       plates.delete();
       dst.delete();
 
       const licenseNumber = await this._performOCR({ canvasImg: canvas });
-
       if (licenseNumber.length > 0) {
         this._resultTable({
           tableWrapper,
@@ -114,7 +105,7 @@ const PlateDetection = {
           },
         });
           
-          tableWrapper.style.display = "block";
+        tableWrapper.style.display = "block";
       } else {
         // plat terdeteksi tapi tidak terbaca oleh tesseract
         return this._errorCannotReadImage({ tableWrapper });
