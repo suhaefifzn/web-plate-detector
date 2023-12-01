@@ -1,0 +1,16 @@
+@media (min-width: 900px) {
+    .navbar-menu {
+        left: 0;
+        position: relative;
+        flex-direction: row;
+        justify-content: flex-end;
+        top: 0;
+    }
+    .navbar-item-link{
+        margin: auto 4px;
+        gap: 6px;
+    }
+    .btn-hamburger {
+        display: none;
+    }
+}

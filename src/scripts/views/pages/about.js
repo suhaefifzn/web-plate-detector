@@ -2,7 +2,7 @@ import TemplateCreator from '../templates/template-creator';
 
 const About = {
     async render() {
-        return `<h2>Halaman About</h2>`;
+        return TemplateCreator.about();
     },
 
     async afterRender() {

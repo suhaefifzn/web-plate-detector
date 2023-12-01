@@ -76,7 +76,7 @@ body {
 	position: relative;
 }
 main {
-	min-height: 75.5vh;
+	min-height: 71.3vh;
 }
 
 /*
@@ -293,4 +293,38 @@ table th {
 */
 #imageOutput {
 	width: 100%;
+}
+
+/* 
+	? Content
+*/
+.content {
+	padding: 0 16px;
+	margin: 0;
+	text-align: justify;
+}
+.content h1 {
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 80px;
+}
+.content h2 {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 70px;
+}
+.content p {
+	line-height: 24px;
+	margin-bottom: 16px;
+}
+.content b {
+	font-weight: 600;
+}
+.content article ul {
+	list-style-type: disc;
+	padding-left: 30px;
+	margin-bottom: 16px;
+}
+.content article ul li {
+	line-height: 24px;
 }
