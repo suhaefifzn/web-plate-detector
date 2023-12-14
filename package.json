@@ -26,7 +26,7 @@
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
-    "@techstark/opencv-js": "^4.8.0-release.9",
+    "@techstark/opencv-js": "^4.8.0-release.10",
     "feather-icons": "^4.29.1",
     "regenerator-runtime": "^0.14.0",
     "sweetalert2": "^11.6.13",
